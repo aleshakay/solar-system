@@ -5,4 +5,3 @@ const printToDom = (divId, toPrint) => {
 };
 
 export default { printToDom };
-
