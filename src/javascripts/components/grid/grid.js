@@ -6,9 +6,7 @@ import planets from '../data/planets';
 
 const makeGrid = () => {
   const planet = planets.getPlanets();
-  let domString = `
-    <h1 class="solarPageTitle">Solar System</h1>
-      <div class="planetgroup row d-flex">`;
+  let domString = '';
   for (let i = 0; i < planet.length; i += 1) {
     domString += `
         <div class="card planetCards">
@@ -19,12 +17,12 @@ const makeGrid = () => {
               <p class="card-text d-none">Gas planet: ${planet[i].isGasPlanet}</p>
               <p class="card-text d-none">Number of Moons: ${planet[i].numberOfMoons}</p>
               <p class="card-text d-none"> Largest Moon : ${planet[i].nameOfLargestMoon}</p>
-            </div>
+              </div>
+              </div>
            </div>
           </div>
           `;
   }
-  domString += '</div></div>';
   utilities.printToDom('planetsHere', domString);
 };
 
@@ -46,5 +44,13 @@ const hoverFun = () => {
   });
 };
 
+const clickCard = () => {
+  $('.planetCards').click((e) => {
+    const card = $(e.target);
+    card.find('.card-title').not(this).hide();
+  });
+};
 
-export default { makeGrid, hoverFun, hide };
+export default {
+  makeGrid, hoverFun, hide, clickCard,
+};
