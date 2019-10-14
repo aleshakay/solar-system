@@ -6,5 +6,6 @@ const init = () => {
   grid.makeGrid();
   grid.hide();
   grid.hoverFun();
+  grid.clickCard();
 };
 init();
