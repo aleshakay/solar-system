@@ -4,8 +4,6 @@ import grid from './components/grid/grid';
 
 const init = () => {
   grid.makeGrid();
-  grid.hide();
-  grid.hoverFun();
-  grid.clickCard();
+  grid.solarEvents();
 };
 init();
