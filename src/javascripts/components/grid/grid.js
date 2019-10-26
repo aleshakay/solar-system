@@ -4,12 +4,13 @@ import './grid.scss';
 import utilities from '../../helpers/utilities';
 import planets from '../data/planets';
 
+
 const makeGrid = () => {
   const planet = planets.getPlanets();
   let domString = '';
   for (let i = 0; i < planet.length; i += 1) {
     domString += `
-        <div class="card planetCards">
+        <div class="card planetCards" id="${planet[i].name.toLowerCase()}">
           <img class="card-img-top hide" src=${planet[i].image}>
             <div class="card-body">
               <h5 class="card-title">${planet[i].name}</h5>
@@ -26,44 +27,22 @@ const makeGrid = () => {
   utilities.printToDom('planetsHere', domString);
 };
 
-// const hide = () => {
-//   $('.card-img-top').hide();
-//   $('.card-text').hide();
-// };
-
-// const hoverFun = () => {
-//   $('.planetCards').mouseover((e) => {
-//     const card = $(e.target);
-//     card.find('.card-img-top').show();
-//     card.find('.card-title').hide();
-//   });
-//   $('.planetCards').mouseleave((e) => {
-//     const card = $(e.target);
-//     card.find('.card-img-top').hide();
-//     card.find('.card-title').show();
-//   });
-// };
-
-// const clickCard = () => {
-//   $('.planetCards').click((e) => {
-//     const card = $(e.target);
-//     card.find('.card-title').not(this).hide();
-//   });
-// };
+const hideForSolo = () => {
+  $('#planetsHere').empty();
+};
 
 const solarEvents = () => {
   $('body').on('mouseenter', '.planetCards', (e) => {
-    $(e.target).find('.card-img-top').removeClass('hide');
-    $(e.target).find('.card-title').addClass('hide');
+    $(e.target).find('.card-img-top').show();
+    $(e.target).find('.card-title').hide();
   });
   $('body').on('mouseleave', '.planetCards', (e) => {
-    $(e.target).find('.card-img-top').addClass('hide');
-    $(e.target).find('.card-title').addClass('show');
-    console.log(e.target);
+    $(e.target).find('.card-img-top').hide();
+    $(e.target).find('.card-title').show();
   });
   $('body').on('click', '.planetCards', () => {
-    utilities.printToDom('planetsHere', '');
-    utilities.printToDom('solarCard', 'this is a single item.  maybe we should call another component?');
+    utilities.printToDom('planetsHere', hideForSolo);
+    // utilities.printToDom('solarCard', singleCard);
   });
 };
 
