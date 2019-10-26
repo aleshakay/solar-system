@@ -1,0 +1,31 @@
+
+.singleContain{
+  display: flex;
+  box-shadow:  0px 5px 5px 10px white;
+}
+
+.soloPlanetCards{
+  width: 300px;
+  height: 600x;
+  margin: 1%;
+  display: flex;
+  text-align: center;
+  box-shadow:  0px 5px 5px 10px white;
+  
+
+  *{
+    pointer-events: none;
+  }
+
+  .card-title{
+    text-align: center;
+    color: white;
+  }
+  .card-body{
+    background-color: rgb(24, 13, 114);
+    color: white;
+  }
+  img{
+    height:300px;
+  }
+}

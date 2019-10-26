@@ -4,13 +4,14 @@ import './grid.scss';
 import utilities from '../../helpers/utilities';
 import planets from '../data/planets';
 
+
 const makeGrid = () => {
   const planet = planets.getPlanets();
   let domString = '';
   for (let i = 0; i < planet.length; i += 1) {
     domString += `
-        <div class="card planetCards">
-          <img class="card-img-top" src=${planet[i].image}>
+        <div class="card planetCards" id="${planet[i].name.toLowerCase()}">
+          <img class="card-img-top hide" src=${planet[i].image}>
             <div class="card-body">
               <h5 class="card-title">${planet[i].name}</h5>
               <p class="card-text d-none">Description: ${planet[i].description}</p>
@@ -26,31 +27,23 @@ const makeGrid = () => {
   utilities.printToDom('planetsHere', domString);
 };
 
-const hide = () => {
-  $('.card-img-top').hide();
-  $('.card-text').hide();
+const hideForSolo = () => {
+  $('#planetsHere').empty();
 };
 
-const hoverFun = () => {
-  $('.planetCards').mouseover((e) => {
-    const card = $(e.target);
-    card.find('.card-img-top').show();
-    card.find('.card-title').hide();
+const solarEvents = () => {
+  $('body').on('mouseenter', '.planetCards', (e) => {
+    $(e.target).find('.card-img-top').show();
+    $(e.target).find('.card-title').hide();
   });
-  $('.planetCards').mouseleave((e) => {
-    const card = $(e.target);
-    card.find('.card-img-top').hide();
-    card.find('.card-title').show();
+  $('body').on('mouseleave', '.planetCards', (e) => {
+    $(e.target).find('.card-img-top').hide();
+    $(e.target).find('.card-title').show();
   });
-};
-
-const clickCard = () => {
-  $('.planetCards').click((e) => {
-    const card = $(e.target);
-    card.find('.card-title').not(this).hide();
+  $('body').on('click', '.planetCards', () => {
+    utilities.printToDom('planetsHere', hideForSolo);
+    // utilities.printToDom('solarCard', singleCard);
   });
 };
 
-export default {
-  makeGrid, hoverFun, hide, clickCard,
-};
+export default { makeGrid, solarEvents };
