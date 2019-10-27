@@ -5,7 +5,9 @@ import single from './components/singleCard/singleCard';
 
 const init = () => {
   grid.makeGrid();
+  grid.searchSpaceBar();
   grid.solarEvents();
   single.singleCard();
+  single.addClose();
 };
 init();
