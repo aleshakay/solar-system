@@ -11,7 +11,7 @@ The below details will also show depending on the your actions.
 * nameOfLargestMoon
 
 # Screenshots
-
+![Main View](https://github.com/aleshakay/solar-system/blob/master/src/screenshot/Screen%20Shot%202019-10-27%20at%2017.29.53.png)
 
 # How to Run
 * Clone this project
