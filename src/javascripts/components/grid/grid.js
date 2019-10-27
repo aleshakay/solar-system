@@ -27,6 +27,30 @@ const makeGrid = () => {
   utilities.printToDom('planetsHere', domString);
 };
 
+const filterlist = () => {
+  const planetList = planets.getPlanets();
+  const searchedForPlanet = $('#input').val().toLowerCase();
+  const findPlanet = planetList.filter((x) => x.name.toLowerCase().includes(searchedForPlanet));
+  makeGrid(findPlanet);
+};
+
+const enterEvent = (e) => {
+  const key = e.keyCode;
+  if (key === 13) {
+    e.preventDefault();
+    filterlist();
+  }
+};
+
+const attachEnterEvent = () => {
+  $('#input').on('keypress', enterEvent);
+};
+
+const searchSpaceBar = () => {
+  const domString = '<input type="text" id="input" placeholder="Enter planet name..." data-search>';
+  utilities.printToDom('searchHere', domString);
+};
+
 const hideForSolo = () => {
   $('#planetsHere').empty();
 };
@@ -46,4 +70,6 @@ const solarEvents = () => {
   });
 };
 
-export default { makeGrid, solarEvents };
+export default {
+  makeGrid, solarEvents, searchSpaceBar, attachEnterEvent,
+};

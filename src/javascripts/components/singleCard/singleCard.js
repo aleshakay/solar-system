@@ -6,11 +6,7 @@ import './singleCard.scss';
 
 const singleCardMaker = (e) => {
   const singlePlanet = planet.getPlanet(e.target.closest('.planetCards').id)[0];
-  console.error(singlePlanet);
   const domString = `
-  <div class="x-box">
-    <h5>X</h5>
-  </div>
   <div class="d-flex">
     <div class="card soloPlanetCards">
       <img class="card-img-top" src=${singlePlanet.image}>
@@ -20,6 +16,7 @@ const singleCardMaker = (e) => {
           <p class="card-text">Gas planet: ${singlePlanet.isGasPlanet}</p>
           <p class="card-text">Number of Moons: ${singlePlanet.numberOfMoons}</p>
           <p class="card-text"> Largest Moon : ${singlePlanet.nameOfLargestMoon}</p>
+          <p><span class="closeme">X</span></p>
         </div>
       </div>
     </div>
@@ -27,9 +24,17 @@ const singleCardMaker = (e) => {
   utilities.printToDom('solarCard', domString);
 };
 
+const addClose = () => {
+  $('body').ready(() => {
+    $('.closeme').on('click', () => {
+      // $('#solarCard').addClass('hide');
+      console.error('hithere');
+    });
+  });
+};
+
 const singleCard = () => {
-  $(document).on('click', '.planetCards', singleCardMaker);
   $(document).on('click', '.planetCards', singleCardMaker);
 };
 
-export default { singleCard };
+export default { singleCard, addClose };
