@@ -1,6 +1,6 @@
 # Solar-System
 
-
+s
 # Description
 This project uses jQuery to display the eight planets, 
 The below details will also show depending on the your actions.
