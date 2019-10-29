@@ -34,7 +34,7 @@ const filterlist = () => {
   const findPlanet = planetList.filter((x) => x.name.toLowerCase().includes(searchedForPlanet));
   console.error(findPlanet);
   const domString = `
-        <div class="card planetCards" id="${findPlanet[0].name.toLowerCase()}">
+        <div class="card planetCards singCard" id="${findPlanet[0].name.toLowerCase()}">
           <img class="card-img-top" src=${findPlanet[0].image}>
             <div class="card-body">
               <h5 class="card-title">${findPlanet[0].name}</h5>
@@ -42,12 +42,21 @@ const filterlist = () => {
               <p class="card-text ">Gas planet: ${findPlanet[0].isGasPlanet}</p>
               <p class="card-text ">Number of Moons: ${findPlanet[0].numberOfMoons}</p>
               <p class="card-text "> Largest Moon : ${findPlanet[0].nameOfLargestMoon}</p>
-              </div>
+              <p><span class="close">X</span></p>
               </div>
            </div>
           </div>
           `;
   utilities.printToDom('planetsHere', domString);
+};
+
+const addClose = () => {
+  $('body').ready(() => {
+    $('.close').on('click', () => {
+      // $('#solarCard').addClass('hide');
+      console.error('hithere');
+    });
+  });
 };
 
 const enterEvent = (e) => {
@@ -87,5 +96,5 @@ const solarEvents = () => {
 };
 
 export default {
-  makeGrid, solarEvents, searchSpaceBar, attachEnterEvent,
+  makeGrid, solarEvents, searchSpaceBar, attachEnterEvent, addClose,
 };
