@@ -7,6 +7,7 @@ const init = () => {
   grid.makeGrid();
   grid.searchSpaceBar();
   grid.solarEvents();
+  grid.addClose();
   grid.attachEnterEvent();
   single.singleCard();
   single.addClose();
