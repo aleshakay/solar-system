@@ -11,9 +11,9 @@ const makeGrid = () => {
   for (let i = 0; i < planet.length; i += 1) {
     domString += `
         <div class="card planetCards" id="${planet[i].name.toLowerCase()}">
-          <img class="card-img-top hide" src=${planet[i].image}>
+          <img class="card-img-top planetImg hide" src=${planet[i].image}>
             <div class="card-body">
-              <h5 class="card-title">${planet[i].name}</h5>
+              <h5 class="card-title planetTitle">${planet[i].name}</h5>
               <p class="card-text d-none">Description: ${planet[i].description}</p>
               <p class="card-text d-none">Gas planet: ${planet[i].isGasPlanet}</p>
               <p class="card-text d-none">Number of Moons: ${planet[i].numberOfMoons}</p>
@@ -30,14 +30,30 @@ const makeGrid = () => {
 const filterlist = () => {
   const planetList = planets.getPlanets();
   const searchedForPlanet = $('#input').val().toLowerCase();
+  console.error(searchedForPlanet);
   const findPlanet = planetList.filter((x) => x.name.toLowerCase().includes(searchedForPlanet));
-  makeGrid(findPlanet);
+  console.error(findPlanet);
+  const domString = `
+        <div class="card planetCards" id="${findPlanet[0].name.toLowerCase()}">
+          <img class="card-img-top" src=${findPlanet[0].image}>
+            <div class="card-body">
+              <h5 class="card-title">${findPlanet[0].name}</h5>
+              <p class="card-text ">Description: ${findPlanet[0].description}</p>
+              <p class="card-text ">Gas planet: ${findPlanet[0].isGasPlanet}</p>
+              <p class="card-text ">Number of Moons: ${findPlanet[0].numberOfMoons}</p>
+              <p class="card-text "> Largest Moon : ${findPlanet[0].nameOfLargestMoon}</p>
+              </div>
+              </div>
+           </div>
+          </div>
+          `;
+  utilities.printToDom('planetsHere', domString);
 };
 
 const enterEvent = (e) => {
   const key = e.keyCode;
   if (key === 13) {
-    e.preventDefault();
+    // e.preventDefault();
     filterlist();
   }
 };
@@ -57,12 +73,12 @@ const hideForSolo = () => {
 
 const solarEvents = () => {
   $('body').on('mouseenter', '.planetCards', (e) => {
-    $(e.target).find('.card-img-top').show();
-    $(e.target).find('.card-title').hide();
+    $(e.target).find('.planetImg').show();
+    $(e.target).find('.planetTitle').hide();
   });
   $('body').on('mouseleave', '.planetCards', (e) => {
-    $(e.target).find('.card-img-top').hide();
-    $(e.target).find('.card-title').show();
+    $(e.target).find('.planetImg').hide();
+    $(e.target).find('.planetTitle').show();
   });
   $('body').on('click', '.planetCards', () => {
     utilities.printToDom('planetsHere', hideForSolo);
